@@ -42,7 +42,7 @@ export class RegisterEffect {
             this.actions$.pipe(
                 ofType(loginSuccessAction),
                 tap(() => {
-                    this.router.navigateByUrl('/');
+                    this.router.navigateByUrl('dashboard');
                 }),
             ),
         { dispatch: false },

@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { DashboardModule } from './dasboard/dashboard.module';
 import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
         provideFirestore(() => getFirestore()),
         AuthModule,
         ToolbarModule,
+        DashboardModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
