@@ -1,0 +1,41 @@
+.auth-card {
+    display: flex;
+    text-align: end;
+    flex-direction: column;
+    max-width: 600px;
+    min-width: 320px;
+    margin: 5% auto 0;
+    padding: 1rem;
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-content {
+        margin-bottom: .5rem;
+    }
+    &.auth-title {
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+    }
+}
+.link-register{
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+mat-card-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.validation {
+    border:solid rgb(3, 196, 3) 2px;
+}
