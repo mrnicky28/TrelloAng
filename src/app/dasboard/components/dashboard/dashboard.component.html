@@ -1,6 +1,6 @@
 <div class="wrapper">
 
-    <button mat-stroked-button class="btn-add-task-list">Add list</button>
+    <button mat-stroked-button (click)="openAddTodoDialog()">Add list</button>
 
     <div cdkDropListGroup>
         <div class="example-container">
@@ -13,6 +13,7 @@
             (cdkDropListDropped)="drop($event)">
             <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
         </div>
+        <button mat-flat-button color="primary" class="btn-add-todo" (click)="openAddTodoDialog()">Add Todo</button>
     </div>
 
     <div class="example-container">
