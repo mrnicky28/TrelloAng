@@ -1,0 +1,19 @@
+<div class="wrapper">
+<h1 mat-dialog-title>New Todo</h1>
+<form [formGroup]="todoForm">
+
+    <mat-form-field appearance="outline">
+        <input type="text" matInput class="input-todo"
+        formControlName="todo" placeholder="Enter todo name" required/>
+        <mat-error *ngIf="todoForm.get('todo')?.touched && todoForm.get('todo')?.invalid">
+            <mat-error *ngIf="todoForm.get('todo')?.errors?.required">
+                Field must not be empty
+            </mat-error>
+        </mat-error>
+    </mat-form-field>
+    <div mat-dialog-actions class="add-todo-btns">
+        <button mat-flat-button color="primary">Add Todo</button>
+        <button mat-flat-button color="warn" (click)="onNoClick()">Close</button>
+    </div>
+</form>
+</div>
