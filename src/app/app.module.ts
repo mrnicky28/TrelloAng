@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dasboard/dashboard.module';
+import { AddTodoDialogModule } from './shared/modules/add-todo-dialog/add-todo-dialog.module';
 import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
         AuthModule,
         ToolbarModule,
         DashboardModule,
+        AddTodoDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
