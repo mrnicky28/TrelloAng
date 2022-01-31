@@ -10,25 +10,27 @@ import { AuthService } from '../../services/auth.service';
 import { loginAction, loginFailureAction, loginSuccessAction } from '../actions/login.action';
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
     constructor(
         private actions$: Actions,
         private authService: AuthService,
         private router: Router,
     ) {}
 
-    register$ = createEffect(() =>
+    login$ = createEffect(() =>
         this.actions$.pipe(
             ofType(loginAction),
             switchMap(({ request }) => {
                 return this.authService.login(request).pipe(
                     map((currentUser: any) => {
+                        console.log('ergerg', currentUser);
+
                         return loginSuccessAction({ currentUser });
                     }),
                     catchError((errorResponse: HttpErrorResponse) => {
                         return of(
                             loginFailureAction({
-                                errors: errorResponse.error.errors,
+                                errors: errorResponse.error?.errors.message,
                             }),
                         );
                     }),
@@ -37,7 +39,7 @@ export class RegisterEffect {
         ),
     );
 
-    redirectAfterSubmit$ = createEffect(
+    loginAfterSubmit$ = createEffect(
         () =>
             this.actions$.pipe(
                 ofType(loginSuccessAction),

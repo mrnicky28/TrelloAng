@@ -1,8 +1,11 @@
+import { Observable } from 'rxjs';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { loginAction } from '../../store/actions/login.action';
+import { isLoggedInSelector } from '../../store/authSelectors';
 
 @Component({
     selector: 'app-login',
@@ -11,12 +14,13 @@ import { loginAction } from '../../store/actions/login.action';
 })
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
-    submmited: boolean | undefined;
+    isLoggedIn$!: Observable<boolean | null>;
 
     constructor(private formBuilder: FormBuilder, private store: Store) {}
 
     ngOnInit(): void {
         this.inizializeForm();
+        this.inizializeValues();
     }
 
     inizializeForm(): void {
@@ -40,10 +44,21 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    inizializeValues(): void {
+        this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
+    }
+
     onSubmit(): void {
+        if (this.loginForm.invalid) {
+            return;
+        }
         const request: any = {
             ...this.loginForm.value,
         };
+        console.log('loginForm', request);
+
         this.store.dispatch(loginAction({ request }));
+
+        this.loginForm.reset();
     }
 }
