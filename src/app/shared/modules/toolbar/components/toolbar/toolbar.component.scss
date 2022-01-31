@@ -1,6 +1,11 @@
 .aplication-header{
+    width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 50px 0 50px;
     font-size: 36px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.logout-btn{
+    margin-left: auto;
 }
