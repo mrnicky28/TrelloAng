@@ -11,29 +11,30 @@
                     <mat-error *ngIf="form.get('email')?.errors?.required">Email field must not be empty</mat-error>
                     <mat-error *ngIf="form.get('email')?.errors?.email">Enter correct email</mat-error>
                 </mat-error> -->
-            <!-- </mat-form-field> --> -->
+            <!-- </mat-form-field> -->
 
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Email address</mat-label>
                 <input type="email" matInput formControlName="email" placeholder="Email address" required/>
-                <!-- <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
-                    <mat-error *ngIf="form.get('email')?.errors?.required">Email field must not be empty</mat-error>
-                    <mat-error *ngIf="form.get('email')?.errors?.email">Enter correct email</mat-error>
-                </mat-error> -->
+                <mat-error *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+                    <mat-error *ngIf="registerForm.get('email')?.errors?.required">Email field must not be empty</mat-error>
+                    <mat-error *ngIf="registerForm.get('email')?.errors?.email">Enter correct email</mat-error>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput formControlName="password" placeholder="Password" required/>
 
-                <!-- <mat-error *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
-                    <mat-error *ngIf="form.get('password')?.errors?.required">Password field must not be empty
+                <mat-error *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+                    <mat-error *ngIf="registerForm.get('password')?.errors?.required">Password field must not be empty
                     </mat-error>
-                    <mat-error *ngIf="form.get('password')?.errors?.minlength">Password must be more than {{
-                        form.get('password')?.errors?.minlength.requiredLength }} characters</mat-error>
-                    <mat-error *ngIf="form.get('password')?.errors?.maxlength">Password must contain no more than 20
+                    <mat-error *ngIf="registerForm.get('password')?.errors?.minlength">Password must be more than {{
+                        registerForm.get('password')?.errors?.minlength.requiredLength }} characters</mat-error>
+                    <mat-error *ngIf="registerForm.get('password')?.errors?.maxlength">Password must contain no more than {{
+                        registerForm.get('password')?.errors?.maxlength.requiredLength }}
                         characters</mat-error>
-                </mat-error> -->
+                </mat-error>
 
             </mat-form-field>
 
