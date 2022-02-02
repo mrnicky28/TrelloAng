@@ -5,7 +5,7 @@ import { FbAuthResponse } from 'src/app/shared/interfaces/FbAuthResponse.interfa
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 
-import { LoginData } from '../interfaces/loginData.interface';
+import { LoginDataInterface } from '../interfaces/loginData.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -13,14 +13,13 @@ import { LoginData } from '../interfaces/loginData.interface';
 export class AuthService {
     constructor(private auth: Auth) {}
 
-    login({ email, password }: LoginData): Observable<any> {
-        console.log(email, password);
+    login({ email, password }: LoginDataInterface): Observable<any> {
         this.setToken;
 
         return from(signInWithEmailAndPassword(this.auth, email, password));
     }
 
-    register({ email, password }: LoginData): Observable<any> {
+    register({ email, password }: LoginDataInterface): Observable<any> {
         return from(createUserWithEmailAndPassword(this.auth, email, password));
     }
 
