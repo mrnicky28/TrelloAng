@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
+import { LoadingModule } from '../shared/modules/loading/loading.module';
 import { MaterialModule } from '../shared/modules/material/material.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
         EffectsModule.forFeature([RegisterEffect, LoginEffect]),
         MaterialModule,
         ReactiveFormsModule,
+        LoadingModule,
     ],
 })
 export class AuthModule {}
