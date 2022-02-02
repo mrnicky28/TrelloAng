@@ -4,8 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
+import { LoginDataInterface } from '../../interfaces/loginData.interface';
 import { loginAction } from '../../store/actions/login.action';
-import { isLoggedInSelector } from '../../store/authSelectors';
+import { isLoadingSelector, isLoggedInSelector } from '../../store/authSelectors';
 
 @Component({
     selector: 'app-login',
@@ -15,6 +16,7 @@ import { isLoggedInSelector } from '../../store/authSelectors';
 export class LoginComponent implements OnInit {
     loginForm!: FormGroup;
     isLoggedIn$!: Observable<boolean | null>;
+    isLoading$!: Observable<boolean>;
 
     constructor(private formBuilder: FormBuilder, private store: Store) {}
 
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
     }
 
     inizializeValues(): void {
+        this.isLoading$ = this.store.pipe(select(isLoadingSelector));
         this.isLoggedIn$ = this.store.pipe(select(isLoggedInSelector));
     }
 
@@ -52,13 +55,10 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.invalid) {
             return;
         }
-        const request: any = {
+        const request: LoginDataInterface = {
             ...this.loginForm.value,
         };
-        console.log('loginForm', request);
-
         this.store.dispatch(loginAction({ request }));
-
         this.loginForm.reset();
     }
 }
