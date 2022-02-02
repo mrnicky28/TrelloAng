@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 
+import { RegisterRequestInterface } from '../../interfaces/registerRequest.interface';
 import { registerAction } from '../../store/actions/register.action';
 import { isSubmittingSelector } from '../../store/authSelectors';
 
@@ -53,7 +54,7 @@ export class RegisterComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        const request: any = {
+        const request: RegisterRequestInterface = {
             ...this.registerForm.value,
         };
         this.store.dispatch(registerAction({ request }));
