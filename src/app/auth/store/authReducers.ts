@@ -16,38 +16,60 @@ const initailState: AuthStateInterface = {
 
 const authReducer = createReducer(
     initailState,
-    on(registerAction, (state): any => ({
-        ...state,
-        isSubmitting: true,
-        validationErrors: null,
-    })),
-    on(registerSuccessAction, (state, action): any => ({
-        ...state,
-        isSubmitting: false,
-        isLoggedIn: true,
-        currentUser: action.currentUser,
-    })),
-    on(registerFailureAction, (state, action): any => ({
-        ...state,
-        isSubmitting: false,
-        validationErrors: action.errors,
-    })),
-    on(loginAction, (state): any => ({
-        ...state,
-        isSubmitting: true,
-        validationErrors: null,
-    })),
-    on(loginSuccessAction, (state, action): any => ({
-        ...state,
-        isSubmmiting: false,
-        isLoggedIn: true,
-        currentUser: action.currentUser,
-    })),
-    on(loginFailureAction, (state, action) => ({
-        ...state,
-        isSubmitting: false,
-        validationErrors: action.errors,
-    })),
+    on(
+        registerAction,
+        (state): AuthStateInterface => ({
+            ...state,
+            isLoading: true,
+            isSubmitting: true,
+            validationErrors: null,
+        }),
+    ),
+    on(
+        registerSuccessAction,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            isLoading: false,
+            isLoggedIn: true,
+            currentUser: action.currentUser,
+        }),
+    ),
+    on(
+        registerFailureAction,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            validationErrors: action.errors,
+        }),
+    ),
+    on(
+        loginAction,
+        (state): AuthStateInterface => ({
+            ...state,
+            isSubmitting: true,
+            isLoading: true,
+            validationErrors: null,
+        }),
+    ),
+    on(
+        loginSuccessAction,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            isLoading: false,
+            isLoggedIn: true,
+            currentUser: action.currentUser,
+        }),
+    ),
+    on(
+        loginFailureAction,
+        (state, action): AuthStateInterface => ({
+            ...state,
+            isSubmitting: false,
+            validationErrors: action.errors,
+        }),
+    ),
 );
 
 export function reducer(state: AuthStateInterface, action: Action) {
