@@ -52,13 +52,16 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if (this.loginForm.invalid) {
-            return;
-        }
+        if (this.loginForm.invalid) return;
+
         const request: LoginDataInterface = {
             ...this.loginForm.value,
         };
+
         this.store.dispatch(loginAction({ request }));
         this.loginForm.reset();
+        Object.keys(this.loginForm.controls).forEach((key) => {
+            this.loginForm.controls[key].setErrors(null);
+        });
     }
 }
