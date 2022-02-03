@@ -5,29 +5,32 @@
         <mat-card-title>Login to the Trello</mat-card-title>
 
         <mat-card-content>
-
             <mat-form-field appearance="outline">
                 <mat-label>Email</mat-label>
-                <input type="email" matInput formControlName="email" placeholder="Email" required/>
+                <input type="email" matInput formControlName="email" placeholder="Email" required />
                 <mat-error *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-                    <mat-error *ngIf="loginForm.get('email')?.errors?.required">Email field must not be empty</mat-error>
+                    <mat-error *ngIf="loginForm.get('email')?.errors?.required">Email field must not be empty
+                    </mat-error>
                     <mat-error *ngIf="loginForm.get('email')?.errors?.email">Enter correct email</mat-error>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password" placeholder="Password" required/>
+                <input type="password" matInput formControlName="password" placeholder="Password" required />
 
                 <mat-error *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
                     <mat-error *ngIf="loginForm.get('password')?.errors?.required">Password field must not be empty
                     </mat-error>
-                    <mat-error *ngIf="loginForm.get('password')?.errors?.minlength">Password must be more than {{
-                        loginForm.get('password')?.errors?.minlength.requiredLength }} characters</mat-error>
-                    <mat-error *ngIf="loginForm.get('password')?.errors?.maxlength">Password must contain no more than 20
+                    <mat-error *ngIf="loginForm.get('password')?.errors?.minlength">Password must be more than
+                        {{
+                        loginForm.get("password")?.errors?.minlength.requiredLength
+                        }}
                         characters</mat-error>
+                    <mat-error *ngIf="loginForm.get('password')?.errors?.maxlength">
+                        Password must contain no more than 20 characters
+                    </mat-error>
                 </mat-error>
-
             </mat-form-field>
 
             <button mat-flat-button color="primary" type="submit" [disabled]="loginForm.invalid">
@@ -35,9 +38,9 @@
             </button>
 
             <p class="link-register">
-                You don't have an account?&nbsp;<a [routerLink]="['/register']">Sign up</a>
+                You don't have an account?&nbsp;
+                <a [routerLink]="['/register']">Sign up</a>
             </p>
-
         </mat-card-content>
     </mat-card>
 </form>
