@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+
+import { loadAddTodosAction } from '../../../todo-list/store/actions/todo.action';
 
 @Component({
     selector: 'app-add-todo-dialog',
@@ -13,6 +16,7 @@ export class AddTodoDialogComponent implements OnInit {
     constructor(
         public dialogRef: MatDialogRef<AddTodoDialogComponent>,
         private formBuilder: FormBuilder,
+        private store: Store,
     ) {}
 
     ngOnInit(): void {
@@ -25,7 +29,20 @@ export class AddTodoDialogComponent implements OnInit {
         });
     }
 
-    onNoClick(): void {
+    onClose(): void {
+        this.dialogRef.close();
+    }
+
+    addTask(): void {
+        if (this.todoForm.invalid) return;
+
+        const todoText: string = this.todoForm.value.todo;
+
+        this.store.dispatch(loadAddTodosAction({ todoText }));
+        this.todoForm.reset();
+        Object.keys(this.todoForm.controls).forEach((key) => {
+            this.todoForm.controls[key].setErrors(null);
+        });
         this.dialogRef.close();
     }
 }
