@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-
-import { Todo } from '../interfaces/todo.inteerface';
+import { of } from 'rxjs';
+import { Todo } from '../interfaces/todo.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -10,7 +10,8 @@ export class TodoService {
 
     getTodos() {
         let todos = JSON.parse(localStorage.getItem('todos')!);
-        return todos === null ? (todos = []) : todos;
+        todos === null ? (todos = []) : todos;
+        return of(todos);
     }
 
     addTodo(addItem: string) {
@@ -20,12 +21,20 @@ export class TodoService {
             todos = JSON.parse(todosStorage);
         }
         const newTodo: Todo = {
-            done: false,
+            completed: false,
             description: addItem,
-            id: todos.lenght + 1,
+            id: new Date().getTime(),
         };
 
         todos.push(newTodo);
-        window.localStorage.setItem('todos', JSON.stringify(todos));
+        return of(window.localStorage.setItem('todos', JSON.stringify(todos)));
+    }
+
+    deleteTodo(deleteItem: any) {
+        const todos = JSON.parse(window.localStorage.getItem('todos')!);
+        const saved = todos.filter((item: any) => {
+            return item.id !== deleteItem.id;
+        });
+        return of(window.localStorage.setItem('todos', JSON.stringify(saved)));
     }
 }
