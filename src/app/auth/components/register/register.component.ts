@@ -51,14 +51,16 @@ export class RegisterComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if (this.registerForm.invalid) {
-            return;
-        }
+        if (this.registerForm.invalid) return;
+
         const request: RegisterRequestInterface = {
             ...this.registerForm.value,
         };
         this.store.dispatch(registerAction({ request }));
 
         this.registerForm.reset();
+        Object.keys(this.registerForm.controls).forEach((key) => {
+            this.registerForm.controls[key].setErrors(null);
+        });
     }
 }
