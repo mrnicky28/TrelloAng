@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { DashboardModule } from './dasboard/dashboard.module';
 import { AddTodoDialogModule } from './shared/modules/add-todo-dialog/add-todo-dialog.module';
+import { PageNotFoundModule } from './shared/modules/error-page/page-not-found.module';
 import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ToolbarModule } from './shared/modules/toolbar/toolbar.module';
         ToolbarModule,
         DashboardModule,
         AddTodoDialogModule,
+        PageNotFoundModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
